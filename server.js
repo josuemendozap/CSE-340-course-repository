@@ -2,6 +2,8 @@ import { testConnection } from './src/models/db.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import express from 'express';
+import { getAllOrganizations } from './src/models/organizations.js';
+
 
 // Define the the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -35,8 +37,10 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/organizations', async (req, res) => {
+    const organizations = await getAllOrganizations();
+
     const title = 'Our Partner Organizations';
-    res.render('organizations', { title });
+    res.render('organizations', { title, organizations });
 });
 
 app.get('/projects', async (req, res) => {
