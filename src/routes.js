@@ -3,10 +3,11 @@ import express from 'express';
 import { homePage } from './controllers/index.js';
 import { organizationsPage } from './controllers/organizations.js';
 import { projectsPage } from './controllers/projects.js';
-import { categoriesPage } from './controllers/categories.js';
+import { categoriesPage, categoryDetailsPage } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
 import { organizationDetailsPage } from './controllers/organizations.js';
 import { projectDetailsPage } from './controllers/projects.js';
+import { getCategoryById } from './models/categories.js';
 
 const router = express.Router();
 
@@ -19,5 +20,6 @@ router.get('/test-error', testErrorPage);
 
 router.get('/organization/:id', organizationDetailsPage);
 router.get('/project/:id', projectDetailsPage);
+router.get('/category/:id', categoryDetailsPage);
 
 export default router;
