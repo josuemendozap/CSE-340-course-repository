@@ -5,7 +5,7 @@ import { organizationsPage } from './controllers/organizations.js';
 import { projectsPage } from './controllers/projects.js';
 import { categoriesPage, categoryDetailsPage } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
-import { organizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation } from './controllers/organizations.js';
+import { organizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
 import { projectDetailsPage } from './controllers/projects.js';
 import { getCategoryById } from './models/categories.js';
 
@@ -26,5 +26,10 @@ router.get('/category/:id', categoryDetailsPage);
 router.get('/new-organization', showNewOrganizationForm);
 // Route to handle new organization form submission
 router.post('/new-organization', organizationValidation, processNewOrganizationForm);
+
+router.get('/edit-organization/:id', showEditOrganizationForm);
+
+router.post('/edit-organization/:id', processEditOrganizationForm, processEditOrganizationForm);
+
 
 export default router;
