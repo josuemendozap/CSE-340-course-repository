@@ -3,10 +3,10 @@ import express from 'express';
 import { homePage } from './controllers/index.js';
 import { organizationsPage } from './controllers/organizations.js';
 import { projectsPage } from './controllers/projects.js';
-import { categoriesPage, categoryDetailsPage } from './controllers/categories.js';
+import { categoriesPage, categoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
 import { organizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
-import { projectDetailsPage } from './controllers/projects.js';
+import { projectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation } from './controllers/projects.js';
 import { getCategoryById } from './models/categories.js';
 
 const router = express.Router();
@@ -31,5 +31,12 @@ router.get('/edit-organization/:id', showEditOrganizationForm);
 
 router.post('/edit-organization/:id', processEditOrganizationForm, processEditOrganizationForm);
 
+router.get('/new-project', showNewProjectForm);
+
+router.post('/new-project', projectValidation, processNewProjectForm);
+
+router.get('/assign-categories/:projectId', showAssignCategoriesForm);
+
+router.post('/assign-categories/:projectId', processAssignCategoriesForm);
 
 export default router;
