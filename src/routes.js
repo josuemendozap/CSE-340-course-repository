@@ -2,7 +2,7 @@ import express from 'express';
 
 import { homePage } from './controllers/index.js';
 import { organizationsPage } from './controllers/organizations.js';
-import { projectsPage } from './controllers/projects.js';
+import { projectsPage, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
 import { categoriesPage, categoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
 import { organizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
@@ -29,11 +29,15 @@ router.post('/new-organization', organizationValidation, processNewOrganizationF
 
 router.get('/edit-organization/:id', showEditOrganizationForm);
 
-router.post('/edit-organization/:id', processEditOrganizationForm, processEditOrganizationForm);
+router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm);
 
 router.get('/new-project', showNewProjectForm);
 
 router.post('/new-project', projectValidation, processNewProjectForm);
+
+router.get('/edit-project/:id', showEditProjectForm);
+
+router.post('/edit-project/:id', projectValidation, processEditProjectForm);
 
 router.get('/assign-categories/:projectId', showAssignCategoriesForm);
 
